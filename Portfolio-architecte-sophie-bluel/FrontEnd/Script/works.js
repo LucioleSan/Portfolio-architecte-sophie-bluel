@@ -69,3 +69,43 @@ const portfolio = document.querySelector(".gallery");
           
       }
             Projets(works);
+
+          //FILTRES
+
+          const conteneurFiltre = document.querySelector(".conteneurBtnFiltre")
+          const filtreTous = document.querySelector(".btnTous");
+          const filtreObjets = document.querySelector(".btnObjets");
+          const filtreAppartements = document.querySelector(".btnAppartements");
+          const filtreHotelsEtRestaurants = document.querySelector(".btnHotelsEtRestaurants");
+
+          // gestion des filtres
+          
+filtreTous.addEventListener("click", function(){
+  document.querySelector(".gallery").innerHTML = "";
+  genererProjets(projets); 
+  couleurFiltre(filtreTous, "true") ; 
+});
+filtreObjets.addEventListener("click", function(){
+  const filtre = projets.filter(function(element){
+      return element.category.name === "Objets"
+  });
+  document.querySelector(".gallery").innerHTML = "";
+  genererProjets(filtre);
+  couleurFiltre(filtreObjets, "true");
+});
+filtreAppartements.addEventListener("click", function(){
+  const filtre = projets.filter(function(element){
+      return element.category.name === "Appartements"
+  });
+  document.querySelector(".gallery").innerHTML = "";
+  genererProjets(filtre);
+  couleurFiltre(filtreAppartements, "true");
+});
+filtreHotelsEtRestaurants.addEventListener("click", function(){
+  const filtre = projets.filter(function(element){
+      return element.category.name === "Hotels & restaurants"
+  });
+  document.querySelector(".gallery").innerHTML = "";
+  genererProjets(filtre);
+  couleurFiltre(filtreHotelsEtRestaurants, "true");
+});
