@@ -60,7 +60,7 @@ const portfolio = document.querySelector(".gallery");
               const titreProjet = document.createElement("figcaption");
               titreProjet.innerHTML = element.title;
               
-              
+              portfolio.appendChild(sectionGallery);
               sectionGallery.appendChild(carteProjet);
               carteProjet.appendChild(imageProjet);
               carteProjet.appendChild(titreProjet);
@@ -79,7 +79,7 @@ const portfolio = document.querySelector(".gallery");
           const filtreHotelsEtRestaurants = document.querySelector(".btnHotelsEtRestaurants");
 
           // gestion des filtres
-
+          
 filtreTous.addEventListener("click", function(){
   document.querySelector(".gallery").innerHTML = "";
   genererProjets(projets); 
