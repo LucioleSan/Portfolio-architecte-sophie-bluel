@@ -51,7 +51,7 @@ function Projets(works){
 
 
 
-          FILTRES
+          // FILTRES
 
           async function getAllCategories() {
             try {
