@@ -66,4 +66,46 @@ function Projets(works){
         }
 
       
-       
+        async function generateFilters(categories) {
+          // Création du filtre "Tous"
+          const sectionGalleryFilter = document.querySelector(".filtres");
+          const allFilterElement = document.createElement("button");        
+          allFilterElement.classList.add("filtres");         
+          allFilterElement.classList.add("selected");         
+          allFilterElement.innerText = "Tous";
+
+          
+    allFilterElement.addEventListener("click", function() {    
+      deselectAllFilters();    
+      allFilterElement.classList.add("selected");    
+      generateWorks(allFilterElement.innerText);
+  });
+
+  
+  sectionGalleryFilter.appendChild(allFilterElement);
+
+  // Itération à travers les catégories récupérées depuis l'API
+  for (let i = 0; i < categories.length; i++) {
+      const category = categories[i];    
+      const filterElement = document.createElement("button");     
+      filterElement.classList.add("gallery-filter");      
+      filterElement.innerText = category.name;     
+      sectionGalleryFilter.appendChild(filterElement);
+
+      
+      filterElement.addEventListener("click", function() {         
+          deselectAllFilters();         
+          filterElement.classList.add("selected");
+          generateWorks(category.id);
+      });
+  }
+
+  // Fonction pour désélectionner tous les filtres
+  function deselectAllFilters() {
+      const filterElements = document.querySelectorAll(".filtres");
+      filterElements.forEach(filterElement => {
+          filterElement.classList.remove("selected");
+      });
+  }
+}
+   
