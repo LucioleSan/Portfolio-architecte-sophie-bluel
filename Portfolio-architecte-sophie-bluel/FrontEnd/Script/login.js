@@ -1,5 +1,5 @@
 const form = document.getElementById('login-form');
-localStorage.setItem("admin", false)
+localStorage.setItem("admin", false);
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -16,7 +16,7 @@ form.addEventListener('submit', (event) => {
     })
     .then(reponse =>  reponse.json())
     .then(data => {
-        console.log(data),
+        console.log(data);
         
             localStorage.setItem("admin", true);
             localStorage.setItem("token", data.token);
