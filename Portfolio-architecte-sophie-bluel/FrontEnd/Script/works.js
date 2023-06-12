@@ -6,10 +6,10 @@ let worksList = [];
 async function getWorks() {
       const response = await fetch('http://localhost:5678/api/works')
       const works = await response.json();
-       console.log(response)
+    //    console.log(response)
        worksList = works;
 
-       Projets(worksList)
+       Projets(0);
 
       if(response.ok){
         console.log(works);
@@ -27,23 +27,30 @@ getWorks()
 
 // RECUPERATION
 
-function Projets(works){
-  works.forEach(element => {
+function Projets(CurrentCat){
 
-        console.log(element)
+    portfolio.innerHTML = "";
 
-        const carteProjet = document.createElement("figure");
+    worksList.forEach(element => {
 
-        const imageProjet = document.createElement("img");
-        imageProjet.setAttribute ('src', element.imageUrl);
+        console.log(element.categoryId)
 
-        const titreProjet = document.createElement("figcaption");
-        titreProjet.innerText = element.title;
+        if(element.categoryId === CurrentCat || CurrentCat === 0) {
+            const carteProjet = document.createElement("figure");
 
-        carteProjet.appendChild(imageProjet);
-        carteProjet.appendChild(titreProjet);
-        
-        portfolio.appendChild(carteProjet);         
+            const imageProjet = document.createElement("img");
+            imageProjet.setAttribute ('src', element.imageUrl);
+
+            const titreProjet = document.createElement("figcaption");
+            titreProjet.innerText = element.title;
+
+            carteProjet.appendChild(imageProjet);
+            carteProjet.appendChild(titreProjet);
+            
+            portfolio.appendChild(carteProjet);   
+        }
+
+              
         
     });
     
@@ -51,61 +58,67 @@ function Projets(works){
 
 
 
-          // FILTRES
+    // FILTRES
 
-          async function getAllCategories() {
-            try {
-                const res = await fetch("http://localhost:5678/api/categories");
-                if (res.ok) {
-                    const categories = await res.json();
-                    return categories;
-                }
-            } catch (err) {
-                console.error(err);
+    async function getAllCategories() {
+        try {
+            const res = await fetch("http://localhost:5678/api/categories");
+            if (res.ok) {
+                const categories = await res.json();
+                // return categories;
+                generateFilters(categories)
             }
+        } catch (err) {
+            console.error(err);
         }
+    }
 
-      
-        async function generateFilters(categories) {
-          // Création du filtre "Tous"
-          const sectionGalleryFilter = document.querySelector(".filtres");
-          const allFilterElement = document.createElement("button");        
-          allFilterElement.classList.add("filtres");         
-          allFilterElement.classList.add("selected");         
-          allFilterElement.innerText = "Tous";
+    getAllCategories();
 
-          
-    allFilterElement.addEventListener("click", function() {    
-      deselectAllFilters();    
-      allFilterElement.classList.add("selected");    
-      generateWorks(allFilterElement.innerText);
-  });
+    async function generateFilters(categories) {
+
+        // Création du filtre "Tous"
+        const sectionGalleryFilter = document.querySelector(".filtres");
+        const allFilterElement = document.createElement("button");
+
+        allFilterElement.classList.add("gallery-filter");         
+        allFilterElement.classList.add("selected");  
+
+        allFilterElement.innerText = "Tous";
+        
+        allFilterElement.addEventListener("click", function() {    
+            deselectAllFilters();    
+            allFilterElement.classList.add("selected");    
+            Projets(0);
+        });
 
   
-  sectionGalleryFilter.appendChild(allFilterElement);
+        sectionGalleryFilter.appendChild(allFilterElement);
 
-  // Itération à travers les catégories récupérées depuis l'API
-  for (let i = 0; i < categories.length; i++) {
-      const category = categories[i];    
-      const filterElement = document.createElement("button");     
-      filterElement.classList.add("gallery-filter");      
-      filterElement.innerText = category.name;     
-      sectionGalleryFilter.appendChild(filterElement);
+        // Itération à travers les catégories récupérées depuis l'API
+        for (let i = 0; i < categories.length; i++) {
+            const category = categories[i];    
+            const filterElement = document.createElement("button");     
+            filterElement.classList.add("gallery-filter");
 
-      
-      filterElement.addEventListener("click", function() {         
-          deselectAllFilters();         
-          filterElement.classList.add("selected");
-          generateWorks(category.id);
-      });
-  }
+            filterElement.innerText = category.name;     
+            sectionGalleryFilter.appendChild(filterElement);
+
+            
+            filterElement.addEventListener("click", function() {         
+                deselectAllFilters();  
+
+                filterElement.classList.add("selected");
+                console.log(category.id);
+                Projets(category.id);
+            });
+    }
 
   // Fonction pour désélectionner tous les filtres
   function deselectAllFilters() {
-      const filterElements = document.querySelectorAll(".filtres");
+      const filterElements = document.querySelectorAll(".gallery-filter");
       filterElements.forEach(filterElement => {
           filterElement.classList.remove("selected");
       });
   }
 }
-   
