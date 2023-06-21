@@ -14,6 +14,9 @@
 	<link rel="stylesheet" href="./assets/style.css">
 	<link rel="stylesheet" href="./assets/categories.css">
 	<link rel="stylesheet" href="./assets/modal.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+		integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 <header>
@@ -43,46 +46,47 @@
 		<div id="divProjets">
 			<h2>Mes Projets</h2>
 
-			<a href="modal1" id="modalEdition" class=" modeEdition openModal isLoggedIn"><i
-					class="fa fa-sharp fa-light fa-pen-to-square"></i>Modifier</a>
-		</div>
-		<div id="modal1" class="modal" aria-hidden="true" role="dialog" style="display: none" >
-			<div class="modalContent js-modal-stop">
-				<span class="closeModal"><i class="fa-solid fa-xmark"></i></span>
-				<div class="modalPhoto">
-					<h2>Galerie photo</h2>
-					<div class="modalGallery"></div>
+			<div id="modal1" class="modal" aria-hidden="true" role="dialog">
+				<div class="modalContent js-modal-stop">
+					<span class="closeModal"><i class="fa-solid fa-xmark"></i></span>
 
-					<hr>
+					<div id="modalPhoto">
+						<h2>Galerie photo</h2>
+						<div class="modalGallery"></div>
 
-					<button id="ajout-image">Ajouter une photo</button>
-					<button id="supprimer-gallery">Supprimer la galerie</button>
-				</div>
-				
-				<div class="modalAjout">
-					<span id="arrowBack"><i class="fa fa-light fa-arrow-left"></i></span>
-					<h2>Ajout photo</h2>
-					<form id="ajoutPhoto-form" enctype="multipart/form-data" novalidate>
-						<div id="imgContainer" class="imgContainer">
-							<i id="ajoutPhotoIcon" class="fa fa-solid fa-image" style="display: block"></i>
-							<label for="ajoutPhotoBtn" id="ajoutPhotoLabel" class="photoBouton"> + Ajouter photo</label>								<input type="file" name="ajoutPhotoBouton" id="ajoutPhotoBtn" style="display:none;" accept=".png, .jpg, .jpeg">
-							<p id="pContainer" style="display: block">jpg, png: 4mo max</p>
-						</div>
-						<label for="titrePhoto">Titre</label>
-						<span id="titleErrorMessage" class="error"></span>
-						<input id="titrePhoto" type="text" placeholder="" name="titrePhoto">
-						
-						<label for="categoriePhoto">Catégorie</label>
-						<select name="categoriePhoto" id="categoriePhoto">
-						</select>
-						
 						<hr>
-						
-						<input type="submit" value="valider" id="validerBtn" class="btn btn-default">
-					</form>
+
+						<button id="ajout-image">Ajouter une photo</button>
+						<button id="supprimer-gallery">Supprimer la galerie</button>
+					</div>
+
+					<div id="modalAjout">
+						<span id="arrowBack"><i class="fa fa-light fa-arrow-left"></i></span>
+						<h2>Ajout photo</h2>
+						<form id="ajoutPhoto-form" enctype="multipart/form-data" novalidate>
+							<div id="imgContainer" class="imgContainer">
+								<i id="ajoutPhotoIcon" class="fa fa-solid fa-image"></i>
+								<label for="ajoutPhotoBtn" id="ajoutPhotoLabel" class="photoBouton"> + Ajouter
+									photo</label> <input type="file" name="ajoutPhotoBouton" id="ajoutPhotoBtn"
+									style="display:none;" accept=".png, .jpg, .jpeg">
+								<p id="pContainer" style="display: block">jpg, png: 4mo max</p>
+							</div>
+							<label for="titrePhoto">Titre</label>
+							<span id="titleErrorMessage" class="error"></span>
+							<input id="titrePhoto" type="text" placeholder="" name="titrePhoto">
+
+							<label for="categoriePhoto">Catégorie</label>
+							<select name="categoriePhoto" id="categoriePhoto">
+							</select>
+
+							<hr>
+
+							<input type="submit" value="valider" id="validerBtn" class="btn btn-default">
+						</form>
+						<a href="#" id="modalclose"><i class="fa fa-sharp fa-light"></i>fermer</a>
+					</div>
 				</div>
 			</div>
-		</div>
 
 		<div class="filtres">
 			<!-- Création des filtres-->
@@ -159,5 +163,6 @@
 	</nav>
 </footer>
 <script src="Script/works.js"></script>
+<script src="Script/modal.js"></script>
 </body>
 </html>
