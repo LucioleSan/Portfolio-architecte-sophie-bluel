@@ -69,3 +69,8 @@ function handleTabInModal(e) {
 // le focus est déplacé vers l'élément suivant (ou précédent si 'Shift' est également pressé) dans 
 // le modal. Si le focus atteint la fin (ou le début) de la liste, il boucle et revient au début (ou à la fin).
 
+function escapeModal(e) {
+    if (e.key === "Escape" || e.key === "Esc") { //gestionnaire d'événements pour la touche "Escape" qui ferme la modale
+        closeModal(e)
+    }
+}
