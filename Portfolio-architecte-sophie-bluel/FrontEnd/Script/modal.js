@@ -74,3 +74,48 @@ function escapeModal(e) {
         closeModal(e)
     }
 }
+
+//récupère les projets depuis l'API et les ajoute à la modal
+async function getProjectModal() {
+    fetch("http://localhost:5678/api/works")
+        .then(function (response) { 
+            return response.json();
+        }).then(function (projects) {
+            const modalGallery = document.querySelector(".modalGallery");
+            modalGallery.innerHTML = '';
+            projects.forEach(function (project) { 
+                addProjectToModal(project); 
+            });
+        });
+}
+
+// Ajouter les photos à la modal 
+function addProjectToModal(project) {
+    const modalGallery = document.querySelector(".modalGallery");
+
+
+    const figure = document.createElement("figure"); 
+    figure.classList.add("figureModal");
+
+    const img = document.createElement("img"); 
+    img.classList.add("imgModal");
+    img.src = project.imageUrl; 
+    img.width = 100;
+
+    const figcaption = document.createElement("figcaption"); 
+    figcaption.classList.add("figCaption");
+    figcaption.alt = project.title; 
+    figcaption.textContent = "éditer"; 
+
+    const categoryId = document.createElement("p"); 
+    categoryId.src = project.categoryId; 
+
+    const deleteWork = document.createElement("i"); 
+    deleteWork.classList.add("deleteTrashIcon", "fa", "fa-solid", "fa-trash-can"); 
+    deleteWork.dataset.id = project.id;
+
+    figure.append(img, figcaption, categoryId, deleteWork); 
+
+    modalGallery.append(figure);
+    
+}
