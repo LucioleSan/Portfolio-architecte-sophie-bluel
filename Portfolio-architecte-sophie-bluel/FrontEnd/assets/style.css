@@ -53,6 +53,47 @@ body {
 	font-family: 'Work Sans' ;
 	font-size: 14px;
 }
+
+#navEdition {
+	display: flex;
+	width: 100%;
+	background-color: black;
+	justify-content: center;
+	align-items: center;
+	padding: 10px 0;
+	gap: 10px;
+	}
+
+#navEdition li{
+	list-style-type: none;
+	font-size: 14px;
+	line-height: 16px;
+	text-align: center;
+	color: black;
+	
+}
+
+#navEdition li.liblack{
+	color:white;
+	
+}
+
+#navEdition .fa-sharp{
+	padding: 10px;
+	
+}
+
+#navEdition li.publier{
+	line-height: 30px;
+	text-align: center;
+	background-color: white;
+	border-radius: 60px;
+	font-weight: 700;
+	width: 20%;
+	padding: 5px;
+}
+
+
 header {
 	display: flex;
 	justify-content: space-between;
@@ -109,6 +150,14 @@ li:hover {
 	display: block;
 	margin: auto;
 	width: 80%;
+}
+
+.modify1{
+	margin: 5px 0 0 57px ;
+}
+
+#introduction .fa-sharp{
+	padding: 10px 10px 10px 0px;
 }
 
 #introduction article {
