@@ -191,6 +191,25 @@ li:hover {
 	font-family: 'Syne';
 }
 
+#portfolio h2{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
+}
+
+#portfolio p{
+	color: black;
+	font-size: 16px;
+	font-family: 'Work Sans';
+	font-weight: 400;
+}
+
+#portfolio .fa-sharp{
+	padding-right: 10px;
+	
+}
+
 .gallery {
 	width: 100%;
 	display: grid;
