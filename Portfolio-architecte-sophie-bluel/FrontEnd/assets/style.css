@@ -271,6 +271,13 @@ footer nav ul {
 	margin: 2em
 }
 
+.modify1:hover, .modify2:hover, .modify3:hover,
+  .modify1:focus, .modify2:focus, .modify3:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+  }
+
 /* LOGIN PAGE  */
 
 #login {

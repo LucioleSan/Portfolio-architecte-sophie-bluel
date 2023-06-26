@@ -15,6 +15,22 @@ const modalPhoto= document.getElementById('modalPhoto');
 const modalAjout= document.getElementById('modalAjout');
 modalAjout.style.display='none'
 
+// Récupérer l'élément avec l'ID "modify3"
+const modify3Element = document.getElementById("modify3");
+
+// Fonction pour ouvrir la modal
+function openModal() {
+  // Récupérer l'élément de la modal
+  const modal3 = document.getElementById("modal1");
+
+  // Afficher la modal en modifiant son style
+  modal3.style.display = "block";
+}
+
+// Ajouter un écouteur d'événement au clic de la souris
+modify3Element.addEventListener("click", openModal);
+
+
 /*Création de la constante closeModal */
 function closeModal(e) {
     if (modal === null) return /* si la modale n'existe pas, on sort de la fonction */
