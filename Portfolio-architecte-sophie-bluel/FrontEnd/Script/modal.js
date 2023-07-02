@@ -96,10 +96,20 @@ function addProjectToModal(project) {
 // Ouvrir Ajouter une photo avec l'évènement click
 const ajout = document.getElementById("ajout-image");
 
-ajout.addEventListener("click", openModal);
+ajout.addEventListener("click", openPicture);
 
-function openModal() {  
+function openPicture() {  
     
     modalAjout.style.display = "flex";
     modalPhoto.style.display='none';
   }
+
+//   Clique pour le retour en arrière 
+
+const back = document.getElementById("arrowBack");
+
+back.addEventListener("click", arrow);
+function arrow(){
+    modalAjout.style.display = "none";
+    modalPhoto.style.display='flex';
+}
