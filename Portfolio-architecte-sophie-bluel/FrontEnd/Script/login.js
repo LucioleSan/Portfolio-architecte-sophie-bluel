@@ -23,13 +23,13 @@ form.addEventListener('submit', async (event) => {
 
   if( !isValidEmail(email))
   {
-    alert('email non valid');
+    alert('email non valide');
     return;
   }
 
-  if( !isValidPassword(password))
+  if( !isValidPassword(pass))
   {
-    alert('Mot de Passe non valid');
+    alert('Mot de Passe non valide');
     return;
   }
 

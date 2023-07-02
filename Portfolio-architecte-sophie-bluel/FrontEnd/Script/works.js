@@ -10,6 +10,7 @@ async function getWorks() {
        worksList = works;
 
        Projets(0);
+       getProjectModal();
 
       if(response.ok){
         console.log(works);
