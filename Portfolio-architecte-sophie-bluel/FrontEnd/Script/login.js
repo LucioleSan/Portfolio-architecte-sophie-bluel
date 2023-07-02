@@ -10,7 +10,7 @@ function isValidEmail(email) {
 // Expression pour le format du Mot de Passe avec 6 lettres
 function isValidPassword(pass) { 
   const passwordRegex = /^[a-zA-Z]{6}$/;
-  return passwordRegex.test(password);
+  return passwordRegex.test(pass);
 }
 
 
