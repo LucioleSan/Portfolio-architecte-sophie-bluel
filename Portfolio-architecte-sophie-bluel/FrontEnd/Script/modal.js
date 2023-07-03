@@ -1,7 +1,7 @@
 // Modal
 
 const Modal1 = document.getElementById('modal1');
-// Modal1.style.display='none';
+Modal1.style.display='none';
 
 
 // const ModalEdition = document.getElementById('modalEdition');
@@ -15,7 +15,7 @@ const modalPhoto= document.getElementById('modalPhoto');
 
 
 const modalAjout= document.getElementById('modalAjout');
-// modalAjout.style.display='none'
+modalAjout.style.display='none'
 
 // Récupérer l'élément avec l'ID "modify3"
 const modify3Element = document.querySelector(".modify3");
