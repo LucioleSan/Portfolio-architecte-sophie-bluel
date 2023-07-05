@@ -278,6 +278,12 @@ footer nav ul {
 	cursor: pointer;
   }
 
+.modify3{
+	color: black;
+	font-size: 14px;
+	font-weight: 400;
+}
+
 /* LOGIN PAGE  */
 
 #login {
