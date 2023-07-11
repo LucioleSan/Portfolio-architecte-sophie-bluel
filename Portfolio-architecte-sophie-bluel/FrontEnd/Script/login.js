@@ -8,8 +8,8 @@ function isValidEmail(email) {
 }
 
 // Expression pour le format du Mot de Passe avec 6 lettres
-function isValidPassword(pass) { 
-  const passwordRegex = /^[a-zA-Z]{6}$/;
+function isValidPassword(password) { 
+  const passwordRegex = /^[a-zA-Z]{6,}$/;
   return passwordRegex.test(pass);
 }
 
@@ -27,11 +27,11 @@ form.addEventListener('submit', async (event) => {
     return;
   }
 
-  if( !isValidPassword(pass))
-  {
-    alert('Mot de Passe non valide');
-    return;
-  }
+  // if( !isValidPassword(pass))
+  // {
+  //   alert('Mot de Passe non valide');
+  //   return;
+  // }
 
  
   // Envoi des données de connexion au serveur via une requête POST

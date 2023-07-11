@@ -39,18 +39,27 @@ closeBtn.addEventListener("click", closeModal);
 /*Création de la constante closeModal */
 function closeModal() {
 
-    // if (modal === null) return /* si la modale n'existe pas, on sort de la fonction */
-    // if (previouslyFocusedElement !== null) previouslyFocusedElement.focus() 
+    
     
      Modal1.style.display = 'none' /* cache la modale */
-    // modal.setAttribute('aria-hidden', 'true') 
-    // modal.removeAttribute('aria-modal')
-    // modal.removeEventListener('click', closeModal)
-    // modal.querySelector('.closeModal').removeEventListener('click', closeModal)
-    // modal.querySelector('.closeModal').removeEventListener('click', stopPropagation)
-    // modal = null
+     modalAjout.style.display = "none";
+    modalPhoto.style.display='block';
+    
+    
 };
 
+// fonction pour la fermeture de la modale quand on clique en dehors
+
+
+function closeModalClickOut(event) {
+    
+    if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    }
+
+    document.addEventListener("click", closeModalClickOut);
+  
 
 
 //récupère les projets depuis l'API et les ajoute à la modal
@@ -100,7 +109,7 @@ ajout.addEventListener("click", openPicture);
 
 function openPicture() {  
     
-    modalAjout.style.display = "flex";
+    modalAjout.style.display = "block";
     modalPhoto.style.display='none';
   }
 
@@ -111,6 +120,8 @@ const back = document.getElementById("arrowBack");
 back.addEventListener("click", arrow);
 function arrow(){
     modalAjout.style.display = "none";
-    modalPhoto.style.display='flex';
+    modalPhoto.style.display='block';
 }
+
+
 
