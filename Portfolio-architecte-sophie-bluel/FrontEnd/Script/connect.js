@@ -21,6 +21,7 @@ if(isAdmin) {
     logout.style.display = 'inline';
 
     filtres.style.display = 'none';
+    // navEdition.style.display ="block";
 
     modify1.style.display = 'inline';
     modify2.style.display = 'inline';
