@@ -283,9 +283,8 @@ async function validateFormProject() {
     // Condition si on réussi à rajouter l'image
     if (response.status === 200 || 201) {
         alert('L\'ajout de l\'image a été réalisé avec succès');
-        // déclenchement du bouton tous, pour pouvoir afficher tous les projets
+        
     
-        // todo : fermer la modale
     } else if (response.status === 401 || 400) {
         alert('Veuillez ajouter un titre ou image');
         console.log("Action impossible");
