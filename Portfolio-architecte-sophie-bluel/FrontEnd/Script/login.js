@@ -51,8 +51,8 @@ form.addEventListener('submit', async (event) => {
         // Récupération du token d'authentification
         const data = await response.json();
         const token = data.token;
-        // Stockage du token dans le localStorage
-        localStorage.setItem('token', token);
+        // Stockage du token dans la sessionStorage
+        sessionStorage.setItem('token', token);
         // Redirection vers la page d'accueil
         window.location.href = "../index.html";
 
