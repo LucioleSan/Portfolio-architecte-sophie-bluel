@@ -1,4 +1,4 @@
-const isAdmin = localStorage.getItem("token") ? true : false;
+const isAdmin = sessionStorage.getItem("token") ? true : false;
 
 
 const login = document.getElementById('login');
@@ -11,7 +11,7 @@ const modify1 = document.querySelector('.modify1')
 const modify2 = document.querySelector('.modify2')
 
 logout.addEventListener('click' , function() {    
-    localStorage.clear();
+    sessionStorage.clear();
     window.location.href = "./login.html";
 });
 
