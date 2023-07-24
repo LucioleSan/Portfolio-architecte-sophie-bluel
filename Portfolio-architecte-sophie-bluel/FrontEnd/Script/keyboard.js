@@ -32,13 +32,6 @@ function handleTabInModal(e) {
     focusableItems[nextIndex].focus();
 }
 
-// Ce code commence par ajouter un gestionnaire d'événements à l'objet document qui 
-// écoute les événements de type 'keydown'. Si la touche pressée est 'Tab', il appelle la fonction handleTabInModal().
-// La fonction handleTabInModal() cherche d'abord un élément avec la classe '.modal.show', 
-// qui est supposé être le modal actuellement ouvert. Ensuite, il trouve tous les 
-// éléments à l'intérieur du modal qui peuvent recevoir le focus. Si la touche 'Tab' est pressée, 
-// le focus est déplacé vers l'élément suivant (ou précédent si 'Shift' est également pressé) dans 
-// le modal. Si le focus atteint la fin (ou le début) de la liste, il boucle et revient au début (ou à la fin).
 
 function escapeModal(e) {
     if (e.key === "Escape" || e.key === "Esc") { //gestionnaire d'événements pour la touche "Escape" qui ferme la modale
