@@ -171,5 +171,11 @@ body{
 	color: #fff;
   }
 
-
+.modalGallery .fa-arrows-up-down-left-right {
+	position: absolute;
+	padding: 5px;
+	margin: 5px 0 0 52px;
+	background-color: black;
+	color: #fff;
+}
 

@@ -25,6 +25,7 @@ if(isAdmin) {
 
     modify1.style.display = 'inline';
     modify2.style.display = 'inline';
+    modify3Element.style.display = "inline"
 
     // autre elements
 
@@ -40,6 +41,7 @@ else
     
     modify1.style.display = 'none';
     modify2.style.display = 'none';
+    modify3Element.style.display = "none"
 
     // autre elements
 

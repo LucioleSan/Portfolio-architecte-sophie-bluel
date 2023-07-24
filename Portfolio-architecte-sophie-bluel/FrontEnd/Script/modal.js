@@ -96,12 +96,22 @@ function addProjectToModal(project) {
 
     const deleteWork = document.createElement("i");
     deleteWork.classList.add("deleteTrashIcon", "fa", "fa-solid", "fa-trash-can");
-    // deleteWork.dataset.id = project.id;
+    
 
     deleteWork.addEventListener("click", function() {deletePicture(project.id)})
 
     let arrows = document.createElement("i");
     arrows.classList.add("fa-solid", "fa-arrows-up-down-left-right");
+    
+    // APPARITION DE LA CROIX AU SURVOL DE LA SOURIS
+
+    // modalGallery.addEventListener('mouseover', function()){
+    //     arrows.style.display='block';
+    // };
+
+    // modalGallery.addEventListener('mouseout', function()){
+    //     arrows.style.display='none';
+    // };
    
     figure.append(img, figcaption, categoryId, deleteWork,arrows);
 
