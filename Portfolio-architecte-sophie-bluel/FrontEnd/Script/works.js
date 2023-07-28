@@ -93,7 +93,10 @@ function Projets(CurrentCat){
             Projets(0);
         });
 
-  
+
+        // Création Option catégorie
+        const selectCategorie = document.getElementById("categoriePhoto");
+
         sectionGalleryFilter.appendChild(allFilterElement);
 
         // Itération à travers les catégories récupérées depuis l'API
@@ -113,7 +116,16 @@ function Projets(CurrentCat){
                 console.log(category.id);
                 Projets(category.id);
             });
+
+            const newOption= document.createElement('option');
+                newOption.setAttribute('value',category.id)
+                const newContentOption= document.createTextNode(category.name)
+                newOption.appendChild(newContentOption) 
+
+            selectCategorie.appendChild(newOption) 
     }
+
+    
 
   // Fonction pour désélectionner tous les filtres
   function deselectAllFilters() {

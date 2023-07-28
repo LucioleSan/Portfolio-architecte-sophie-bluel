@@ -96,22 +96,22 @@ function addProjectToModal(project) {
 
     const deleteWork = document.createElement("i");
     deleteWork.classList.add("deleteTrashIcon", "fa", "fa-solid", "fa-trash-can");
-    
+   
 
     deleteWork.addEventListener("click", function() {deletePicture(project.id)})
 
     let arrows = document.createElement("i");
     arrows.classList.add("fa-solid", "fa-arrows-up-down-left-right");
-    
+    arrows.style.display='none';
     // APPARITION DE LA CROIX AU SURVOL DE LA SOURIS
 
-    // modalGallery.addEventListener('mouseover', function()){
-    //     arrows.style.display='block';
-    // };
+    figure.addEventListener('mouseover', function() {
+        arrows.style.display='block';
+    });
 
-    // modalGallery.addEventListener('mouseout', function()){
-    //     arrows.style.display='none';
-    // };
+    figure.addEventListener('mouseout', function(){
+        arrows.style.display='none';
+    });
    
     figure.append(img, figcaption, categoryId, deleteWork,arrows);
 
@@ -145,17 +145,18 @@ function arrow(){
 
 async function deletePicture(id) {
  
-      const projectId = id;  
+      const projectId = id;      
 
     if (confirm("Voulez-vous supprimer l'image?") == true) {
+        console.log(localStorage.getItem("token"))
         fetch("http://localhost:5678/api/works/" + projectId, {
           method: 'DELETE',
           headers: {
             'accept' : '*/*',
-            'Authorization' : 'Bearer ' + (localStorage.getItem("token")),
+            'Authorization' : 'Bearer ' + (sessionStorage.getItem("token")),
          }
       }).then (() => {
-        getWorks();
+         getWorks();
       });
        
  
@@ -260,6 +261,14 @@ function validateFile() {
 
 }
 
+
+validerBtn.addEventListener('click', (e) =>{
+    e.preventDefault();
+   
+     validateFormProject();
+
+})
+
 // Ajout d'un élément
 async function validateFormProject() {
    
@@ -270,16 +279,33 @@ async function validateFormProject() {
     const inputTitle = document.getElementById("titrePhoto").value;
    
     const selectCategorie = document.getElementById("categoriePhoto");
-    const categoriePhotoId = selectCategorie.options[selectCategorie.selectedIndex].dataset.id;
-   
+    const categoriePhotoId = selectCategorie.options[selectCategorie.selectedIndex].value;
+
+    if(categoriePhotoId === 0 ){
+        alert('veillez choisir une categorie')
+        return
+    }
+
+    if(inputTitle === "" ){
+        alert('veillez entrer le titre')
+        return
+    }
+
+    if( document.getElementById("ajoutPhotoBtn").files.length === 0 ){
+        alert('veillez choisir une image')
+        return
+    }
+
  
 
     // Construction du formData à envoyer
     const formData = new FormData();
+
     formData.append("image", imgUploaded);
     formData.append("title", inputTitle);
     formData.append("category", categoriePhotoId);
- 
+
+
     // Appel de la fonction fetch avec toutes les informations nécessaires
     let response = await fetch("http://localhost:5678/api/works", {
       method: "POST",
@@ -292,6 +318,13 @@ async function validateFormProject() {
 
     // Condition si on réussi à rajouter l'image
     if (response.status === 200 || 201) {
+        getWorks();
+
+        // intilaliser la valeur par defaut du fprm d'ajout
+
+        titrePhoto.value = "";
+        categoriePhotoId.selectedIndex = 0;
+
         alert('L\'ajout de l\'image a été réalisé avec succès');
        
    
@@ -305,15 +338,29 @@ async function validateFormProject() {
 
 //Changement de couleur du bouton validé
 function changeBtnColor() {
-    const validerBtn = document.getElementById("validerBtn");
-    let inputTitle = document.getElementById("titrePhoto");
+    const validerBtn = document.getElementById("validerBtn");    
 
-    if (ajoutPhotoBouton.files.length === 0 || inputTitle.value === "") {
+    if (ajoutPhotoBtn.files.length === 0 || titrePhoto.value === "" || categoriePhoto.options[categoriePhoto.selectedIndex].value == 0 ) {
+       
         validerBtn.classList.add('validerBtnFalse');
+        validerBtn.style.backgroundColor = 'green'; 
+        
     } else {
+       
         validerBtn.classList.remove('validerBtnFalse');
+        
     }
 
 }
+
+
+
+titrePhoto.addEventListener('blur' , () => {
+    changeBtnColor();
+})
+
+categoriePhoto.addEventListener('onchange', () => {
+    changeBtnColor();
+})
 
   
