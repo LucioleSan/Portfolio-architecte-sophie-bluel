@@ -191,14 +191,24 @@ ajoutPhotoBtn.addEventListener('change', function() {
 // Définissez la fonction readURL
 function readURL(input) {
     if (input.files && input.files[0]) {
-        var reader = new FileReader();
+        const maxSize = 4 * 1024 * 1024; // 4 Mo (vous pouvez ajuster cette valeur selon vos besoins)
+        const file = input.files[0];
 
-        reader.onload = function (e) {
-            imagePreview.src = e.target.result;
-            imagePreview.style.display = 'block'; // Assurez-vous que l'image prévisualisée est visible
-        };
+        if (file.size <= maxSize) {
+            var reader = new FileReader();
 
-        reader.readAsDataURL(input.files[0]);
+            reader.onload = function (e) {
+                var imagePreview = document.getElementById('imagePreview');
+                imagePreview.src = e.target.result;
+                imagePreview.style.display = 'block';
+            };
+
+            reader.readAsDataURL(file);
+        } else {
+            // Affichez un message d'erreur si la taille du fichier dépasse la limite
+            alert('La taille de l\'image dépasse la limite autorisée.');
+            input.value = ''; // Réinitialisez l'élément input file pour permettre à l'utilisateur de choisir un nouveau fichier
+        }
     }
 }
 
