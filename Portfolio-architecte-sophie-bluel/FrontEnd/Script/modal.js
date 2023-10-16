@@ -163,60 +163,46 @@ async function deletePicture(id) {
 }
 }
 
-function validateImage() {
-    //Création des photos
-    let ajoutPhotoBouton = document.getElementById("ajoutPhotoBtn");
-    let ajoutPhotoLabel = document.getElementById("ajoutPhotoLabel");
-    let imgContainer = document.getElementById("imgContainer");
-   
-        //appel de la fonction pour vérifier si le fichier est sous un format valide
-        //Condition Si il n'y a pas de fichier
-        if (ajoutPhotoBouton.files.length == 0) {
-            return; //La fonction s'arrête la
-        }
-        //sinon
-        else {
-            //si le fichier est sous le bon format alors
-            if (validFileType(ajoutPhotoBouton.files[0].type)) {
-                //vérification de la taille du fichier
-                //si fichier trop volumineux
-                if (ajoutPhotoBouton.files[0].size > 4000000) {
-                    alert('Photo trop volumineuse');
-                }
-                //sinon
-                else {
-                    const imgFile = document.createElement('img');
-                    let imgErrorMessage = document.createElement("span");
-   
-                    imgFile.setAttribute("id", "imgPreview");
-                    imgFile.setAttribute('alt', 'Aperçu de l\'image sélectionnée');
-                   
-                    imgErrorMessage.classList.add("imgErrorMessage"); // création des messages d'erreurs
 
-                    imgContainer.appendChild(imgFile, imgErrorMessage); // ajout de l'élément imgFile au parent imgContainer
-   
-                    imgFile.src = URL.createObjectURL(ajoutPhotoBouton.files[0]); // création de l'url de la photo ajoutée
-                    imgFile.className = 'img-uploaded';
-                   
-                    // Invisibilité des autres éléments de l'image container quand on preview l'image uploadée
-                    ajoutPhotoLabel.style.display = "none";
-                    let ajoutPhotoIcon = document.getElementById("ajoutPhotoIcon");
-                    ajoutPhotoIcon.style.display = "none";
-                    let pContainer = document.getElementById("pContainer");
-                    pContainer.style.display = "none";
+// Visualisation image
 
-                // suppression des éléments d'erreur s'ils existent
-                let imgErrorMessageExists = document.querySelector('.imgErrorMessage');
+// function readURL(input) {
+//     if (input.files && input.files[0]) {
+//         var reader = new FileReader();
 
-                if (imgErrorMessageExists) {
-                    imgErrorMessageExists.remove();
-                }
-            }
-        } else {
-            alert('Format non accepté');
-        }
+//         reader.onload = function (e) {
+//             var imagePreview = document.getElementById('imagePreview');
+//             imagePreview.src = e.target.result;
+//         };
+
+//         reader.readAsDataURL(input.files[0]);
+//     }
+// }
+
+
+// Récupérez l'élément img pour la prévisualisation
+const imagePreview = document.getElementById('imagePreview');
+
+// Écoutez l'événement "change" sur l'élément input file
+ajoutPhotoBtn.addEventListener('change', function() {
+    readURL(this); // Appelez la fonction readURL avec l'élément input file en tant qu'argument
+});
+
+// Définissez la fonction readURL
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            imagePreview.src = e.target.result;
+            imagePreview.style.display = 'block'; // Assurez-vous que l'image prévisualisée est visible
+        };
+
+        reader.readAsDataURL(input.files[0]);
     }
 }
+
+
 
 //Format accepté
 const fileTypes = [
