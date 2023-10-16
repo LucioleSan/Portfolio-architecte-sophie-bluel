@@ -55,6 +55,11 @@ function closeModalClickOut(event) {
    
     if (event.target === Modal1) {
         Modal1.style.display = 'none';
+
+         // Réinitialisez l'image prévisualisée
+         const imagePreview = document.getElementById('imagePreview');
+         imagePreview.src = 'http://placehold.it/180'; 
+         imagePreview.style.display = 'none'; 
       }
     }
 
@@ -70,8 +75,8 @@ closeBtn.addEventListener('click', function() {
 
     // Réinitialisez l'image prévisualisée
     const imagePreview = document.getElementById('imagePreview');
-    imagePreview.src = 'http://placehold.it/180'; // Remplacez l'URL par l'image par défaut
-    imagePreview.style.display = 'none'; // Masquez l'image prévisualisée
+    imagePreview.src = 'http://placehold.it/180'; 
+    imagePreview.style.display = 'none'; 
 });
 
 //récupère les projets depuis l'API et les ajoute à la modal
