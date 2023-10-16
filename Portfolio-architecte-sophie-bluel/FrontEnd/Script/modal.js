@@ -62,6 +62,18 @@ function closeModalClickOut(event) {
  
 
 
+// Écoutez l'événement de clic sur le bouton de fermeture
+closeBtn.addEventListener('click', function() {
+    // Réinitialisez l'élément input file
+    const ajoutPhotoBtn = document.getElementById('ajoutPhotoBtn');
+    ajoutPhotoBtn.value = '';
+
+    // Réinitialisez l'image prévisualisée
+    const imagePreview = document.getElementById('imagePreview');
+    imagePreview.src = 'http://placehold.it/180'; // Remplacez l'URL par l'image par défaut
+    imagePreview.style.display = 'none'; // Masquez l'image prévisualisée
+});
+
 //récupère les projets depuis l'API et les ajoute à la modal
 function getProjectModal() {
     const modalGallery = document.querySelector(".modalGallery");
