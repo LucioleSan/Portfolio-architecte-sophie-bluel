@@ -159,21 +159,6 @@ async function deletePicture(id) {
 }
 
 
-// Visualisation image
-
-// function readURL(input) {
-//     if (input.files && input.files[0]) {
-//         var reader = new FileReader();
-
-//         reader.onload = function (e) {
-//             var imagePreview = document.getElementById('imagePreview');
-//             imagePreview.src = e.target.result;
-//         };
-
-//         reader.readAsDataURL(input.files[0]);
-//     }
-// }
-
 
 // Récupérez l'élément img pour la prévisualisation
 const imagePreview = document.getElementById('imagePreview');
@@ -302,12 +287,7 @@ async function validateFormProject() {
     if (response.status === 200 || 201) {
         getWorks();
 
-        // intilaliser la valeur par defaut du fprm d'ajout
-
-        // titrePhoto.value = "";
-        // categoriePhotoId.selectedIndex = '0';
-
-        // selectCategorie.value = '0'
+    
        
 
         document.getElementById('ajoutPhoto-form').reset();

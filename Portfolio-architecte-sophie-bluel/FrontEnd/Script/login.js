@@ -27,11 +27,7 @@ form.addEventListener('submit', async (event) => {
     return;
   }
 
-  // if( !isValidPassword(pass))
-  // {
-  //   alert('Mot de Passe non valide');
-  //   return;
-  // }
+
 
  
   // Envoi des données de connexion au serveur via une requête POST
@@ -69,10 +65,7 @@ form.addEventListener('submit', async (event) => {
         }
         
 
-        // const data = await response.json();
-        // console.log(data)
-        // const error = await response.json();
-        // alert(error.message);
+      
       }
     }
   catch (error) {
