@@ -4,13 +4,6 @@ const Modal1 = document.getElementById('modal1');
 Modal1.style.display='none';
 
 
-// const ModalEdition = document.getElementById('modalEdition');
-// ModalEdition.addEventListener("click", function() {  
-//      alert('test')
-//     Modal1.style.display='flex'
-// });
-
-
 const modalPhoto= document.getElementById('modalPhoto');
 
 
@@ -55,29 +48,14 @@ function closeModalClickOut(event) {
    
     if (event.target === Modal1) {
         Modal1.style.display = 'none';
-
-         // Réinitialisez l'image prévisualisée
-         const imagePreview = document.getElementById('imagePreview');
-         imagePreview.src = 'http://placehold.it/180'; 
-         imagePreview.style.display = 'none'; 
+        modalAjout.style.display = "none";
+        modalPhoto.style.display='block';
       }
     }
 
     Modal1.addEventListener("click", closeModalClickOut);
  
 
-
-// Écoutez l'événement de clic sur le bouton de fermeture
-closeBtn.addEventListener('click', function() {
-    // Réinitialisez l'élément input file
-    const ajoutPhotoBtn = document.getElementById('ajoutPhotoBtn');
-    ajoutPhotoBtn.value = '';
-
-    // Réinitialisez l'image prévisualisée
-    const imagePreview = document.getElementById('imagePreview');
-    imagePreview.src = 'http://placehold.it/180'; 
-    imagePreview.style.display = 'none'; 
-});
 
 //récupère les projets depuis l'API et les ajoute à la modal
 function getProjectModal() {
@@ -208,24 +186,15 @@ ajoutPhotoBtn.addEventListener('change', function() {
 // Définissez la fonction readURL
 function readURL(input) {
     if (input.files && input.files[0]) {
-        const maxSize = 4 * 1024 * 1024; // 4 Mo (vous pouvez ajuster cette valeur selon vos besoins)
-        const file = input.files[0];
+        var reader = new FileReader();
 
-        if (file.size <= maxSize) {
-            var reader = new FileReader();
+        reader.onload = function (e) {
+            imagePreview.src = e.target.result;
+            imagePreview.style.display = 'block'; // Assurez-vous que l'image prévisualisée est visible
+            imgContainer.style.display = 'none'
+        };
 
-            reader.onload = function (e) {
-                var imagePreview = document.getElementById('imagePreview');
-                imagePreview.src = e.target.result;
-                imagePreview.style.display = 'block';
-            };
-
-            reader.readAsDataURL(file);
-        } else {
-            // Affichez un message d'erreur si la taille du fichier dépasse la limite
-            alert('La taille de l\'image dépasse la limite autorisée.');
-            input.value = ''; // Réinitialisez l'élément input file pour permettre à l'utilisateur de choisir un nouveau fichier
-        }
+        reader.readAsDataURL(input.files[0]);
     }
 }
 
@@ -294,7 +263,7 @@ async function validateFormProject() {
     const selectCategorie = document.getElementById("categoriePhoto");
     const categoriePhotoId = selectCategorie.options[selectCategorie.selectedIndex].value;
 
-    if(categoriePhotoId === 0 ){
+    if(categoriePhotoId === '0' ){
         alert('veillez choisir une categorie')
         return
     }
@@ -335,8 +304,15 @@ async function validateFormProject() {
 
         // intilaliser la valeur par defaut du fprm d'ajout
 
-        titrePhoto.value = "";
-        categoriePhotoId.selectedIndex = 0;
+        // titrePhoto.value = "";
+        // categoriePhotoId.selectedIndex = '0';
+
+        // selectCategorie.value = '0'
+       
+
+        document.getElementById('ajoutPhoto-form').reset();
+        imagePreview.style.display = 'none';
+        imgContainer.style.display = 'flex';
 
         alert('L\'ajout de l\'image a été réalisé avec succès');
        
@@ -356,12 +332,12 @@ function changeBtnColor() {
     if (ajoutPhotoBtn.files.length === 0 || titrePhoto.value === "" || categoriePhoto.options[categoriePhoto.selectedIndex].value == 0 ) {
        
         validerBtn.classList.add('validerBtnFalse');
-        validerBtn.style.backgroundColor = 'green'; 
-        
+        validerBtn.style.backgroundColor = 'green';
+       
     } else {
        
         validerBtn.classList.remove('validerBtnFalse');
-        
+       
     }
 
 }
@@ -376,4 +352,3 @@ categoriePhoto.addEventListener('onchange', () => {
     changeBtnColor();
 })
 
-  
