@@ -312,7 +312,7 @@ ajoutPhotoBtn.addEventListener('change', function() {
 
     if (fileSize > maxSize) {
         alert("L'image sélectionnée dépasse la taille maximale de 4 Mo.");
-        this.value === 0; // Effacez la sélection de fichier en réinitialisant la valeur
+        this.value = ""; // Effacez la sélection de fichier en réinitialisant la valeur
     } else {
         // Si la taille est valide, continuez avec la prévisualisation ou d'autres actions
         readURL(this);
