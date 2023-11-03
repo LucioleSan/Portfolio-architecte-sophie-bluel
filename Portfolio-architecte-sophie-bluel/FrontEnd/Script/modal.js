@@ -278,7 +278,7 @@ async function validateFormProject() {
         return
     }
 
- 
+    
 
     // Construction du formData à envoyer
     const formData = new FormData();
@@ -310,7 +310,7 @@ async function validateFormProject() {
         imgContainer.style.display = 'flex';
 
         alert('L\'ajout de l\'image a été réalisé avec succès');
-       
+        changeBtnColor();
    
     } else if (response.status === 401 || 400) {
         alert('Veuillez ajouter un titre ou image');
@@ -335,23 +335,25 @@ ajoutPhotoBtn.addEventListener('change', function() {
     } else {
         // Si la taille est valide, continuez avec la prévisualisation ou d'autres actions
         readURL(this);
-        changeBtnColor();
+        
     }
 });
 
 
-//Changement de couleur du bouton validé
+// Changement de couleur du bouton validé
+
 function changeBtnColor() {
     const validerBtn = document.getElementById("validerBtn");    
 
     if (ajoutPhotoBtn.files.length === 0 || titrePhoto.value === "" || categoriePhoto.options[categoriePhoto.selectedIndex].value == 0 ) {
        
         validerBtn.classList.add('validerBtnFalse');
-        validerBtn.style.backgroundColor = 'green';
+        validerBtn.style.backgroundColor = 'gray';
        
     } else {
        
         validerBtn.classList.remove('validerBtnFalse');
+        validerBtn.style.backgroundColor = 'green';
        
     }
 
@@ -359,11 +361,14 @@ function changeBtnColor() {
 
 
 
+
+
 titrePhoto.addEventListener('blur' , () => {
     changeBtnColor();
 })
 
-categoriePhoto.addEventListener('onchange', () => {
+categoriePhoto.addEventListener('change', () => {
     changeBtnColor();
-})
 
+
+})
