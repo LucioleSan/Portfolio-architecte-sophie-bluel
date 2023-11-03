@@ -32,6 +32,11 @@ closeBtn.addEventListener("click", closeModal);
 /*Création de la constante closeModal */
 function closeModal() {
 
+    // Réinitialisez tous les éléments de la modal à leur état initial
+    document.getElementById('ajoutPhoto-form').reset(); // Réinitialise le formulaire
+    imagePreview.src = ''; // Efface la prévisualisation de l'image
+    imagePreview.style.display = 'none'; // Cache la prévisualisation de l'image
+    imgContainer.style.display = 'flex'; // Affiche le conteneur de l'élément d'entrée de fichier
    
    
      Modal1.style.display = 'none' /* cache la modale */
@@ -41,15 +46,25 @@ function closeModal() {
    
 };
 
+
+
 // fonction pour la fermeture de la modale quand on clique en dehors
 
 
 function closeModalClickOut(event) {
+
+    
    
     if (event.target === Modal1) {
         Modal1.style.display = 'none';
         modalAjout.style.display = "none";
         modalPhoto.style.display='block';
+
+        // Réinitialisez tous les éléments de la modal à leur état initial
+    document.getElementById('ajoutPhoto-form').reset(); // Réinitialise le formulaire
+    imagePreview.src = ''; // Efface la prévisualisation de l'image
+    imagePreview.style.display = 'none'; // Cache la prévisualisation de l'image
+    imgContainer.style.display = 'flex'; // Affiche le conteneur de l'élément d'entrée de fichier
       }
     }
 
@@ -303,8 +318,9 @@ async function validateFormProject() {
     };
    
 }
-;
 
+
+// Écoutez l'événement "change" sur l'élément input file
 ajoutPhotoBtn.addEventListener('change', function() {
     // Vérifier la taille du fichier sélectionné
     const fileSize = this.files[0].size; // Taille du fichier en octets
@@ -312,13 +328,17 @@ ajoutPhotoBtn.addEventListener('change', function() {
 
     if (fileSize > maxSize) {
         alert("L'image sélectionnée dépasse la taille maximale de 4 Mo.");
-        this.value = ""; // Effacez la sélection de fichier en réinitialisant la valeur
+        document.getElementById('ajoutPhoto-form').reset(); 
+        imagePreview.src = ''; // Efface la prévisualisation de l'image
+        imagePreview.style.display = 'none'; // Cache la prévisualisation de l'image
+        imgContainer.style.display = 'flex'; // Affiche le conteneur de l'élément d'entrée de fichier
     } else {
         // Si la taille est valide, continuez avec la prévisualisation ou d'autres actions
         readURL(this);
         changeBtnColor();
     }
 });
+
 
 //Changement de couleur du bouton validé
 function changeBtnColor() {
