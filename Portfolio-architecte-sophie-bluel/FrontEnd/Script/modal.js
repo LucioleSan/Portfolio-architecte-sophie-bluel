@@ -180,7 +180,20 @@ const imagePreview = document.getElementById('imagePreview');
 
 // Écoutez l'événement "change" sur l'élément input file
 ajoutPhotoBtn.addEventListener('change', function() {
-    readURL(this); // Appelez la fonction readURL avec l'élément input file en tant qu'argument
+    // Vérifier la taille du fichier sélectionné
+    const fileSize = this.files[0].size; // Taille du fichier en octets
+    const maxSize = 4 * 1024 * 1024; // 4 Mo en octets
+
+    if (fileSize > maxSize) {
+        alert("L'image sélectionnée dépasse la taille maximale de 4 Mo.");
+        
+    } 
+    
+    else {
+        // Si la taille est valide, continuez avec la prévisualisation ou d'autres actions
+        readURL(this);
+        
+    }
 });
 
 // Définissez la fonction readURL
@@ -320,24 +333,7 @@ async function validateFormProject() {
 }
 
 
-// Écoutez l'événement "change" sur l'élément input file
-ajoutPhotoBtn.addEventListener('change', function() {
-    // Vérifier la taille du fichier sélectionné
-    const fileSize = this.files[0].size; // Taille du fichier en octets
-    const maxSize = 4 * 1024 * 1024; // 4 Mo en octets
 
-    if (fileSize > maxSize) {
-        alert("L'image sélectionnée dépasse la taille maximale de 4 Mo.");
-        document.getElementById('ajoutPhoto-form').reset(); 
-        imagePreview.src = ''; // Efface la prévisualisation de l'image
-        imagePreview.style.display = 'none'; // Cache la prévisualisation de l'image
-        imgContainer.style.display = 'flex'; // Affiche le conteneur de l'élément d'entrée de fichier
-    } else {
-        // Si la taille est valide, continuez avec la prévisualisation ou d'autres actions
-        readURL(this);
-        
-    }
-});
 
 
 // Changement de couleur du bouton validé
